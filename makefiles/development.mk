@@ -36,11 +36,11 @@ test: build
 ## Run example programs
 examples: build
 	@printf "\n\033[1;33m📦 Running Examples\033[0m\n\n"
-	@executables=$$(find $(BUILD_DIR)/examples -type f -perm +111 2>/dev/null); \
+	@executables=$$(find "$(BUILD_DIR)/examples" -maxdepth 1 -type f -name '*_example*' 2>/dev/null); \
 	for exec in $$executables; do \
 		printf "\n\033[1;32m🚀 Running: $$exec\033[0m\n\n"; \
 		"$$exec" || exit $$?; \
-	done; \
+	done;
 
 # ==============================================================================
 # Code Quality Targets
