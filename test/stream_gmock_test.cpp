@@ -1,7 +1,6 @@
+#include <Arduino.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-
-#include <Arduino.h>
 
 using ::testing::_;
 using ::testing::Invoke;
