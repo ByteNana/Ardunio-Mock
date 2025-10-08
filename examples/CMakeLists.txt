@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.15)
+
+add_executable(queue_example queue_example.cpp)
+target_link_libraries(queue_example PRIVATE ArduinoNativeMocks)
+
+add_executable(semaphore_example semaphore_example.cpp)
+target_link_libraries(semaphore_example PRIVATE ArduinoNativeMocks)
+
+add_executable(task_example task_example.cpp)
+target_link_libraries(task_example PRIVATE ArduinoNativeMocks)
