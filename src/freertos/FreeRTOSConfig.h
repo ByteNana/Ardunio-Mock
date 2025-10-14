@@ -49,7 +49,7 @@
 #define INCLUDE_xTimerGetTimerDaemonTaskHandle 1
 #define INCLUDE_xTaskGetIdleTaskHandle 1
 #define INCLUDE_pcTaskGetTaskName 1
- 
+
 /* It is a good idea to define configASSERT() while developing.  configASSERT()
 uses the same semantics as the standard C assert() macro. */
 // Ensure C linkage for assert hook when included in C++
@@ -62,4 +62,3 @@ void vAssertCalled(unsigned long ulLine, const char* const pcFileName);
 #endif
 #define configASSERT(x) \
   if ((x) == 0) vAssertCalled(__LINE__, __FILE__)
-
