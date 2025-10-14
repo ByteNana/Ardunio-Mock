@@ -15,6 +15,7 @@ set(LIB_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
   ${LIB_SRC_DIR}/*.cpp
   ${LIB_SRC_DIR}/*.h
+  ${LIB_SRC_DIR}/*.c
 )
 
 add_library(ArduinoNativeMocks STATIC ${SRC_FILES})
