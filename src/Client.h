@@ -4,7 +4,7 @@
 #include "Stream.h"
 
 class Client : public Stream {
-public:
+ public:
   virtual int connect(IPAddress ip, uint16_t port) = 0;
   virtual int connect(const char *host, uint16_t port) = 0;
   virtual size_t write(uint8_t) = 0;

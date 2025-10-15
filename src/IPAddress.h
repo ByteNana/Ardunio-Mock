@@ -1,13 +1,13 @@
 #pragma once
 
 #include <WString.h>
+
 #include <cstdint>
 
 class IPAddress {
-public:
+ public:
   IPAddress() : _address{0, 0, 0, 0} {}
-  IPAddress(uint8_t a, uint8_t b, uint8_t c, uint8_t d)
-      : _address{a, b, c, d} {}
+  IPAddress(uint8_t a, uint8_t b, uint8_t c, uint8_t d) : _address{a, b, c, d} {}
   IPAddress(uint32_t addr) {
     _address[0] = (addr >> 24) & 0xFF;
     _address[1] = (addr >> 16) & 0xFF;
@@ -30,7 +30,7 @@ public:
     return s;
   }
 
-private:
+ private:
   uint8_t *raw_address() { return _address; }
   uint8_t _address[4];
 };

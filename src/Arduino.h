@@ -34,7 +34,6 @@ inline constexpr auto max(T a, U b) -> typename std::common_type<T, U>::type {
   return (a > b) ? R(a) : R(b);
 }
 
-
 inline bool isDigit(char c) { return isdigit(static_cast<unsigned char>(c)); }
 
 inline bool isAlpha(char c) { return isalpha(static_cast<unsigned char>(c)); }
