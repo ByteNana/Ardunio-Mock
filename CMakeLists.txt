@@ -30,6 +30,13 @@ target_include_directories(ArduinoNativeMocks
 find_package(Threads REQUIRED)
 target_link_libraries(ArduinoNativeMocks PUBLIC Threads::Threads)
 
+# For MD5Builder: use native crypto on non-Apple platforms
+if(NOT APPLE)
+  find_package(OpenSSL REQUIRED)
+  target_compile_definitions(ArduinoNativeMocks PUBLIC HAVE_OPENSSL_MD5=1)
+  target_link_libraries(ArduinoNativeMocks PUBLIC OpenSSL::Crypto)
+endif()
+
 enable_testing()
 add_subdirectory(examples)
 add_subdirectory(test)
