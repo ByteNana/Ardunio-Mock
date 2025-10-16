@@ -7,7 +7,7 @@
 static String md5_of(const String& s) {
   MD5Builder md5;
   md5.begin();
-  md5.add(reinterpret_cast<const uint8_t*>(s.c_str()), s.size());
+  md5.add((uint8_t*)s.c_str(), s.size());
   md5.calculate();
   return md5.toString();
 }
@@ -37,9 +37,9 @@ TEST(MD5BuilderTest, MultiChunkAdd) {
 
   MD5Builder md5;
   md5.begin();
-  md5.add(reinterpret_cast<const uint8_t*>(part1), strlen(part1));
-  md5.add(reinterpret_cast<const uint8_t*>(part2), strlen(part2));
-  md5.add(reinterpret_cast<const uint8_t*>(part3), strlen(part3));
+  md5.add((uint8_t*)part1, strlen(part1));
+  md5.add((uint8_t*)part2, strlen(part2));
+  md5.add((uint8_t*)part3, strlen(part3));
   // No explicit calculate to ensure implicit finalization works in toString
   String hex = md5.toString();
   EXPECT_EQ(hex, String("9e107d9d372bb6826bd81d3542a419d6"));
@@ -49,12 +49,12 @@ TEST(MD5BuilderTest, AddAfterFinalizeIsIgnored) {
   MD5Builder md5;
   md5.begin();
   const char* msg = "abc";
-  md5.add(reinterpret_cast<const uint8_t*>(msg), strlen(msg));
+  md5.add((uint8_t*)msg, strlen(msg));
   String first = md5.toString();  // finalize occurs here if needed
 
   // Try to change digest after finalization; should have no effect
   const char* extra = "more";
-  md5.add(reinterpret_cast<const uint8_t*>(extra), strlen(extra));
+  md5.add((uint8_t*)extra, strlen(extra));
   String second = md5.toString();
 
   EXPECT_EQ(first, String("900150983cd24fb0d6963f7d28e17f72"));
@@ -66,9 +66,9 @@ TEST(MD5BuilderTest, HandlesNullAndZeroLength) {
   md5.begin();
   // Passing nullptr or zero length should be safe and a no-op
   md5.add(nullptr, 0);
-  md5.add(reinterpret_cast<const uint8_t*>("abc"), 0);
+  md5.add((uint8_t*)"abc", 0);
   md5.add(nullptr, 10);
-  md5.add(reinterpret_cast<const uint8_t*>("abc"), 3);
+  md5.add((uint8_t*)"abc", 3);
 
   EXPECT_EQ(md5.toString(), String("900150983cd24fb0d6963f7d28e17f72"));
 }

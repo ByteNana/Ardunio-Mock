@@ -1,4 +1,3 @@
-// Native MD5 for tests: uses CommonCrypto on macOS, OpenSSL on others.
 #pragma once
 
 #include <Arduino.h>
@@ -15,7 +14,7 @@ class MD5Builder {
     CC_MD5_Init(&ctx);
     finalized = false;
   }
-  void add(const uint8_t *data, size_t len) {
+  void add(uint8_t *data, size_t len) {
     if (!finalized && data && len) CC_MD5_Update(&ctx, data, (CC_LONG)len);
   }
   void calculate() {
@@ -60,7 +59,7 @@ class MD5Builder {
     MD5_Init(&ctx);
     finalized = false;
   }
-  void add(const uint8_t *data, size_t len) {
+  void add(uint8_t *data, size_t len) {
     if (!finalized && data && len) MD5_Update(&ctx, data, len);
   }
   void calculate() {
@@ -97,7 +96,7 @@ class MD5Builder {
  public:
   MD5Builder() { reset(); }
   void begin() { reset(); }
-  void add(const uint8_t *data, size_t len) {
+  void add(uint8_t *data, size_t len) {
     if (!data || len == 0) return;
     for (size_t i = 0; i < len; ++i) {
       uint8_t b = data[i];
